@@ -11,4 +11,12 @@ public class CuentaBancaria {
     public double obtenerSaldo() {
         return saldo;
     }
+
+    //Prueba de la autonomia de cada rama
+    public void retirar(double monto) {
+        if (monto <= saldo) {
+            saldo -= monto;
+        }
+    }
+
 }
