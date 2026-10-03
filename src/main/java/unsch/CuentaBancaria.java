@@ -18,5 +18,12 @@ public class CuentaBancaria {
             saldo -= monto;
         }
     }
-
+    public boolean transferir(CuentaBancaria destino, double monto) {
+        if (destino == null || destino == this || monto <= 0 || monto > saldo) {
+            return false;
+        }
+        this.saldo -= monto;
+        destino.saldo += monto;
+        return true;
+    }
 }
