@@ -6,24 +6,16 @@ public class CuentaBancaria {
         this.saldo = saldoInicial;
     }
     public void depositar(double monto) {
-        saldo += monto;
+        if (monto > 0) {
+            saldo += monto;
+        }
     }
-    public double obtenerSaldo() {
-        return saldo;
-    }
-
-    //Prueba de la autonomia de cada rama
     public void retirar(double monto) {
-        if (monto <= saldo) {
+        if (monto > 0 && monto <= saldo) {
             saldo -= monto;
         }
     }
-    public boolean transferir(CuentaBancaria destino, double monto) {
-        if (destino == null || destino == this || monto <= 0 || monto > saldo) {
-            return false;
-        }
-        this.saldo -= monto;
-        destino.saldo += monto;
-        return true;
+    public double getSaldo() {
+        return saldo;
     }
 }
