@@ -33,12 +33,44 @@ public class CuentaBancariaTest {
 
     @Test
     void transferirDinero() {
-        CuentaBancaria origen =
-                new CuentaBancaria(1000);
-        CuentaBancaria destino =
-                new CuentaBancaria(500);
+        CuentaBancaria origen = new CuentaBancaria(1000);
+        CuentaBancaria destino = new CuentaBancaria(500);
+
         origen.transferir(destino, 200);
+
         assertEquals(800, origen.getSaldo());
         assertEquals(700, destino.getSaldo());
     }
+
+    @Test
+    void transferirConSaldoInsuficiente() {
+        CuentaBancaria origen = new CuentaBancaria(100);
+        CuentaBancaria destino = new CuentaBancaria(500);
+
+        origen.transferir(destino, 500);
+
+        assertEquals(100, origen.getSaldo());
+        assertEquals(500, destino.getSaldo());
+    }
+
+    @Test
+    void transferirMontoNegativo() {
+        CuentaBancaria origen = new CuentaBancaria(1000);
+        CuentaBancaria destino = new CuentaBancaria(500);
+
+        origen.transferir(destino, -200);
+
+        assertEquals(1000, origen.getSaldo());
+        assertEquals(500, destino.getSaldo());
+    }
+
+    @Test
+    void transferirADestinoNulo() {
+        CuentaBancaria origen = new CuentaBancaria(1000);
+
+        origen.transferir(null, 100);
+
+        assertEquals(1000, origen.getSaldo());
+    }
+
 }
